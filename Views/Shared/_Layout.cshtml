@@ -19,16 +19,32 @@
                 @Html.ActionLink("View Products", "Index", "Products",null, new { @class = "nav-link" })
             </li>
             <li class="nav-item">
-                @Html.ActionLink("Create Products", "CreateProducts", "Products",null, new { @class = "nav-link" })
+                @Html.ActionLink("Create Products", "Create", "Products",null, new { @class = "nav-link" })
             </li>
         </ul>
         <ul class="navbar nav ml-auto">
             <li class="nav-item">
-                @Html.ActionLink("SignIn", "Index", "Users",new {@class="nav-link form-control btn-success" })
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a href="#" class="nav-link" style="color:darkorange">Welcome : @User.Identity.Name</a>
+                }
             </li>
-            <li class="nav-item">
-                @Html.ActionLink("SignUp", "SignUp", "Users",new {@class= "nav-link form-control btn-info ", @style= "margin-inline:8px" })
+            <li class="nav-item" >
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @Html.ActionLink("SignOut", "SignOut", "Users",null, new { @class = "nav-link form-control btn-success" })
+                }
+                else
+                {
+                    @Html.ActionLink("SignIn", "Index", "Users",null, new { @class = "nav-link form-control btn-success col-md-15" })
+                }
             </li>
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <li class="nav-item">
+                    @Html.ActionLink("SignUp", "SignUp", "Users",null, new { @class = "nav-link form-control btn-info col-md-10 ", @style = "margin-inline:8px" })
+                </li>
+            }
         </ul>
     </nav>
 

@@ -6,9 +6,6 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create", new { @class = "form-control btn-success" })
-</p>
 <table class="table">
     <tr>
         <th>
@@ -31,25 +28,25 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
+        <td class="col-2">
             @Html.DisplayFor(modelItem => item.Title)
         </td>
-        <td>
+        <td class="col-2">
             @Html.DisplayFor(modelItem => item.Brand)
         </td>
-        <td>
+        <td class="col-2">
             @Html.DisplayFor(modelItem => item.Description)
         </td>
-        <td>
+        <td class="col-2">
             @Html.DisplayFor(modelItem => item.Price)
         </td>
-        <td>
+        <td class="col-2">
             @Html.DisplayFor(modelItem => item.Unit)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id  }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+            @Html.ActionLink("Details", "Details", new { id = item.Id })
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
         </td>
     </tr>
 }

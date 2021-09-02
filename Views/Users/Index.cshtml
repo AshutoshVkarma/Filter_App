@@ -12,34 +12,37 @@
             <div class="card-body">
                 @using (Html.BeginForm("SignIn", "Users"))
                 {
-                    <div class="form-group">
+                    <div class="form-group" style="color:red">
                         @ViewBag.Msg
                     </div>
-                <div class="form-group">
-                    <div class="input-group mb-3 input-group-sm">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fa fa-user"></i></span>
+                    <div class="form-group" style="color:chartreuse">
+                        @TempData["Msg"]
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group mb-3 input-group-sm">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-user"></i></span>
+                            </div>
+                            <input type="text" class="form-control"
+                                   placeholder="Username" name="email">
                         </div>
-                        <input type="text" class="form-control"
-                               placeholder="Username" name="email">
-                    </div>
-                    <div class="input-group mb-3 input-group-sm">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fa fa-key"></i></span>
+                        <div class="input-group mb-3 input-group-sm">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-key"></i></span>
+                            </div>
+                            <input type="text" class="form-control"
+                                   placeholder="Username" name="Password">
                         </div>
-                        <input type="text" class="form-control"
-                               placeholder="Username" name="Password">
+                        <div class="form-group">
+                            <input type="checkbox" name="cookie" /><span>Remember Me</span>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn-block btn-success form-control">SignIn</button>
+                        </div>
+                        <div class="form-group">
+                            @Html.ActionLink("Forget Password", "ForgetPassword", "Users")
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <input type="checkbox" name="chk" /><span>Remember Me</span>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn-block btn-success form-control">SignIn</button>
-                    </div>
-                    <div class="form-group">
-                        @Html.ActionLink("Forget Password","ForgetPassword","Users")
-                    </div>
-                </div>
                 }
             </div>
             

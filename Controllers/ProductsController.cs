@@ -10,6 +10,7 @@ using Filter_App.Models;
 
 namespace Filter_App.Controllers
 {
+    [Authorize]
     public class ProductsController : Controller
     {
         private ApplicationContext db = new ApplicationContext();

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace Filter_App.Controllers
 {
@@ -14,8 +15,8 @@ namespace Filter_App.Controllers
         {
             context = new ApplicationContext();
         }
-            // GET: Users
-            public ActionResult Index()
+        // GET: Users
+        public ActionResult Index()
         {
             return View();
         }
@@ -25,13 +26,20 @@ namespace Filter_App.Controllers
             var user = context.Users.SingleOrDefault(e => e.Email == model.Email && e.Password == model.Password);
             if(user!= null)
             {
-                return RedirectToAction("Index","Product");
+                FormsAuthentication.SetAuthCookie(model.Email, model.Cookie);
+                return RedirectToAction("Index","Products");
             }
             else
             {
                 ViewBag.Msg = "Invalid User";
             }
-            return View();
+            return View("Index");
+        }
+
+        public ActionResult SignOut()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index");
         }
 
         public ActionResult SignUp()
@@ -44,7 +52,9 @@ namespace Filter_App.Controllers
         {
             context.Users.Add(users);
             context.SaveChanges();
+            TempData["Msg"]= "User Created";
             return RedirectToAction("Index");
         }
+        
     }
 }
